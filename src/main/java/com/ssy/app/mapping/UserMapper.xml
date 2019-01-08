@@ -3,22 +3,15 @@
 <mapper namespace="com.ssy.app.dao.UserMapper">
   <resultMap id="BaseResultMap" type="com.ssy.app.enity.User">
     <id column="id" jdbcType="BIGINT" property="id" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ssy.app.enity.User">
-    <result column="login_name" jdbcType="VARBINARY" property="loginName" />
-    <result column="password" jdbcType="VARBINARY" property="password" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
   <sql id="Base_Column_List">
-    id
+    id, login_name, password
   </sql>
-  <sql id="Blob_Column_List">
-    login_name, password
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
-    select 
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from user
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -29,7 +22,7 @@
   <insert id="insert" parameterType="com.ssy.app.enity.User">
     insert into user (id, login_name, password
       )
-    values (#{id,jdbcType=BIGINT}, #{loginName,jdbcType=VARBINARY}, #{password,jdbcType=VARBINARY}
+    values (#{id,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.ssy.app.enity.User">
@@ -50,10 +43,10 @@
         #{id,jdbcType=BIGINT},
       </if>
       <if test="loginName != null">
-        #{loginName,jdbcType=VARBINARY},
+        #{loginName,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
-        #{password,jdbcType=VARBINARY},
+        #{password,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -61,18 +54,18 @@
     update user
     <set>
       <if test="loginName != null">
-        login_name = #{loginName,jdbcType=VARBINARY},
+        login_name = #{loginName,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
-        password = #{password,jdbcType=VARBINARY},
+        password = #{password,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ssy.app.enity.User">
+  <update id="updateByPrimaryKey" parameterType="com.ssy.app.enity.User">
     update user
-    set login_name = #{loginName,jdbcType=VARBINARY},
-      password = #{password,jdbcType=VARBINARY}
+    set login_name = #{loginName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
