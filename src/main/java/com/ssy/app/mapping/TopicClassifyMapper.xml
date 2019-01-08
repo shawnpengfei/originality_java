@@ -3,21 +3,14 @@
 <mapper namespace="com.ssy.app.dao.TopicClassifyMapper">
   <resultMap id="BaseResultMap" type="com.ssy.app.enity.TopicClassify">
     <id column="id" jdbcType="BIGINT" property="id" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ssy.app.enity.TopicClassify">
-    <result column="classify" jdbcType="VARBINARY" property="classify" />
+    <result column="classify" jdbcType="VARCHAR" property="classify" />
   </resultMap>
   <sql id="Base_Column_List">
-    id
+    id, classify
   </sql>
-  <sql id="Blob_Column_List">
-    classify
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
-    select 
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from topic_classify
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -27,7 +20,7 @@
   </delete>
   <insert id="insert" parameterType="com.ssy.app.enity.TopicClassify">
     insert into topic_classify (id, classify)
-    values (#{id,jdbcType=BIGINT}, #{classify,jdbcType=VARBINARY})
+    values (#{id,jdbcType=BIGINT}, #{classify,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ssy.app.enity.TopicClassify">
     insert into topic_classify
@@ -44,7 +37,7 @@
         #{id,jdbcType=BIGINT},
       </if>
       <if test="classify != null">
-        #{classify,jdbcType=VARBINARY},
+        #{classify,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -52,14 +45,14 @@
     update topic_classify
     <set>
       <if test="classify != null">
-        classify = #{classify,jdbcType=VARBINARY},
+        classify = #{classify,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ssy.app.enity.TopicClassify">
+  <update id="updateByPrimaryKey" parameterType="com.ssy.app.enity.TopicClassify">
     update topic_classify
-    set classify = #{classify,jdbcType=VARBINARY}
+    set classify = #{classify,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

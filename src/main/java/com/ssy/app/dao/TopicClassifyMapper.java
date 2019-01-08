@@ -13,5 +13,5 @@ public interface TopicClassifyMapper {
 
     int updateByPrimaryKeySelective(TopicClassify record);
 
-    int updateByPrimaryKeyWithBLOBs(TopicClassify record);
+    int updateByPrimaryKey(TopicClassify record);
 }

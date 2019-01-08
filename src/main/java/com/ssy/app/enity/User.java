@@ -3,9 +3,9 @@ package com.ssy.app.enity;
 public class User {
     private Long id;
 
-    private byte[] loginName;
+    private String loginName;
 
-    private byte[] password;
+    private String password;
 
     public Long getId() {
         return id;
@@ -15,19 +15,19 @@ public class User {
         this.id = id;
     }
 
-    public byte[] getLoginName() {
+    public String getLoginName() {
         return loginName;
     }
 
-    public void setLoginName(byte[] loginName) {
-        this.loginName = loginName;
+    public void setLoginName(String loginName) {
+        this.loginName = loginName == null ? null : loginName.trim();
     }
 
-    public byte[] getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(byte[] password) {
-        this.password = password;
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 }

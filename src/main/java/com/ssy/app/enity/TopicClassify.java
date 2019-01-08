@@ -3,7 +3,7 @@ package com.ssy.app.enity;
 public class TopicClassify {
     private Long id;
 
-    private byte[] classify;
+    private String classify;
 
     public Long getId() {
         return id;
@@ -13,11 +13,11 @@ public class TopicClassify {
         this.id = id;
     }
 
-    public byte[] getClassify() {
+    public String getClassify() {
         return classify;
     }
 
-    public void setClassify(byte[] classify) {
-        this.classify = classify;
+    public void setClassify(String classify) {
+        this.classify = classify == null ? null : classify.trim();
     }
 }

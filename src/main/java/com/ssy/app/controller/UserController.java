@@ -1,6 +1,7 @@
 package com.ssy.app.controller;
 
 
+import com.ssy.app.utils.ResponseJson;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,5 +17,11 @@ public class UserController {
     @ApiOperation(notes = "测试一下",tags = {"测试用的"},value = "hello word")
     public String getStr(){
         return "hello";
+    }
+
+    @GetMapping("/login")
+    public ResponseJson login(String loginName,String password){
+
+        return null;
     }
 }
