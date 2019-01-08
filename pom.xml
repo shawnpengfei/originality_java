@@ -174,7 +174,6 @@
             <scope>provided</scope>
         </dependency>
 
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -309,7 +308,7 @@
                 </includes>
             </resource>
         </resources>
-        <finalName>yuhaoze</finalName>
+        <finalName>ssy</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
