@@ -29,6 +29,19 @@
 
         <dependencies>
 
+
+            <!-- jackson相关jar -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson-core.version}</version>
+            </dependency>
+
             <!-- servlet -->
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -105,12 +118,6 @@
                 <version>${aopalliance.version}</version>
             </dependency>
 
-            <!-- 文件上传 -->
-            <dependency>
-                <groupId>commons-fileupload</groupId>
-                <artifactId>commons-fileupload</artifactId>
-                <version>${commons-fileupload.version}</version>
-            </dependency>
             <!-- jackson相关jar -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
