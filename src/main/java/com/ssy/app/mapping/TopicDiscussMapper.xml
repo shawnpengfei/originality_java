@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssy.app.dao.TopicDiscussMapper">
+  <resultMap id="BaseResultMap" type="com.ssy.app.enity.TopicDiscuss">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="tid" jdbcType="BIGINT" property="tid" />
+    <result column="descr" jdbcType="VARCHAR" property="descr" />
+    <result column="uid" jdbcType="BIGINT" property="uid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, tid, descr, uid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from topic_discuss
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from topic_discuss
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ssy.app.enity.TopicDiscuss">
+    insert into topic_discuss (id, tid, descr, 
+      uid)
+    values (#{id,jdbcType=BIGINT}, #{tid,jdbcType=BIGINT}, #{descr,jdbcType=VARCHAR}, 
+      #{uid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssy.app.enity.TopicDiscuss">
+    insert into topic_discuss
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tid != null">
+        tid,
+      </if>
+      <if test="descr != null">
+        descr,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="tid != null">
+        #{tid,jdbcType=BIGINT},
+      </if>
+      <if test="descr != null">
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssy.app.enity.TopicDiscuss">
+    update topic_discuss
+    <set>
+      <if test="tid != null">
+        tid = #{tid,jdbcType=BIGINT},
+      </if>
+      <if test="descr != null">
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssy.app.enity.TopicDiscuss">
+    update topic_discuss
+    set tid = #{tid,jdbcType=BIGINT},
+      descr = #{descr,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

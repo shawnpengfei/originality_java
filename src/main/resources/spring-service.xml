@@ -45,6 +45,5 @@
 
 		<!-- 通知 -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="pc" />
-
 	</aop:config>
 </beans>
