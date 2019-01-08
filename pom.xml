@@ -29,12 +29,7 @@
     <dependencyManagement>
 
         <dependencies>
-            <!-- jstl -->
-            <dependency>
-                <groupId>jstl</groupId>
-                <artifactId>jstl</artifactId>
-                <version>${jstl.version}</version>
-            </dependency>
+
             <!-- servlet -->
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -44,12 +39,7 @@
                 <scope>provided</scope>
             </dependency>
 
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>jsp-api</artifactId>
-                <version>${jsp.version}</version>
-                <scope>provided</scope>
-            </dependency>
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
@@ -241,11 +231,7 @@
             <artifactId>aopalliance</artifactId>
         </dependency>
 
-        <!-- 文件上传 -->
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-        </dependency>
+
         <!-- jackson相关jar -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
