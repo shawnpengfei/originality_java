@@ -6,7 +6,6 @@ import com.ssy.app.service.SeeImgService;
 import com.ssy.app.vo.JsonBean;
 import com.ssy.app.vo.PageBeanVo;
 import com.ssy.app.vo.ResultVo;
-import com.sun.deploy.net.HttpResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.fileupload.FileItem;
@@ -15,7 +14,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
