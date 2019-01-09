@@ -13,6 +13,7 @@
         <spring-contenxt.version>4.3.5.RELEASE</spring-contenxt.version>
         <spring-jdbc.version>4.3.5.RELEASE</spring-jdbc.version>
         <spring-web.version>4.3.5.RELEASE</spring-web.version>
+        <spring-webmvc.version>4.3.5.RELEASE</spring-webmvc.version>
         <junit.version>4.12</junit.version>
         <aspectjrt.version>1.8.2</aspectjrt.version>
         <aopalliance.version>1.0</aopalliance.version>
@@ -345,20 +346,20 @@
         </resources>
         <finalName>ssy</finalName>
         <plugins>
-           <!-- <plugin>
+           <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <url>http://47.107.64.250:8080/manager/text</url>
-                    <username>king</username>
-                    <password>admin</password>
-                    <update>true</update>
+                    <!--<url>http://47.107.64.250:8080/manager/text</url>-->
+                    <!--<username>king</username>
+                    <password>admin</password>-->
+                    <!--<update>true</update>-->
                     <uriEncoding>UTF-8</uriEncoding>
-                    &lt;!&ndash; 配置web应用的路径 &ndash;&gt;
-                    <path>/mgzf</path>
+                   <!-- &lt;!&ndash; 配置web应用的路径 &ndash;&gt;-->
+                    <path>/SSY</path>
                 </configuration>
-            </plugin>-->
+            </plugin>
             <!-- 指定编译版本 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
