@@ -263,7 +263,7 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!-- 日志处理 -->
+        <!--日志处理-->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
@@ -319,6 +319,11 @@
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
         </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.3</version>
+        </dependency>
 
     </dependencies>
     <build>
@@ -340,7 +345,7 @@
         </resources>
         <finalName>ssy</finalName>
         <plugins>
-            <plugin>
+           <!-- <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
@@ -350,10 +355,10 @@
                     <password>admin</password>
                     <update>true</update>
                     <uriEncoding>UTF-8</uriEncoding>
-                    <!-- 配置web应用的路径 -->
+                    &lt;!&ndash; 配置web应用的路径 &ndash;&gt;
                     <path>/mgzf</path>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <!-- 指定编译版本 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
