@@ -18,7 +18,7 @@ public class YhzUtils {
 
     private final static String TOKEN_SECERT = "YAOHAOZE";
 
-    public static String sign(String name,int id) {
+    public static String sign(String name,long id) {
 
         Date date = new Date(System.currentTimeMillis()+DATE_OUT);
 
