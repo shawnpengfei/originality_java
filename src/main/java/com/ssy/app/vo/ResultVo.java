@@ -24,7 +24,7 @@ public class ResultVo {
 		this.data = data;
 	}
 	
-	public static ResultVo setOK(Object data,int count) {
+	public static ResultVo setOK(Object data) {
 		ResultVo rvo=new ResultVo();
 		rvo.setCode(0);
 		rvo.setMsg("OK");

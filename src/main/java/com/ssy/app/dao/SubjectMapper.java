@@ -17,6 +17,6 @@ public interface SubjectMapper {
 
     int updateByPrimaryKey(Subject record);
 
+    //查询所有专题分类
     List<Subject> selectAll();
-
 }
