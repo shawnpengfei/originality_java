@@ -10,3 +10,5 @@
 项目只上传src文件夹和pom.xml文件
 
 每次提交前先 pull 后 commit 然后 push
+
+1.9 修改了 .gitignore 文件
