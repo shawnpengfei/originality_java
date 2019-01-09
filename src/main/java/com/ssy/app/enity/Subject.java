@@ -5,10 +5,6 @@ public class Subject {
 
     private String name;
 
-    private String classify;
-
-    private String imgurl;
-
     public Integer getId() {
         return id;
     }
@@ -23,21 +19,5 @@ public class Subject {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public String getClassify() {
-        return classify;
-    }
-
-    public void setClassify(String classify) {
-        this.classify = classify == null ? null : classify.trim();
-    }
-
-    public String getImgurl() {
-        return imgurl;
-    }
-
-    public void setImgurl(String imgurl) {
-        this.imgurl = imgurl == null ? null : imgurl.trim();
     }
 }
