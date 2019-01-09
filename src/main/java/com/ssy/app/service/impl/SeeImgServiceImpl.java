@@ -4,8 +4,11 @@ import com.ssy.app.dao.SeeImgMapper;
 import com.ssy.app.enity.SeeImg;
 import com.ssy.app.service.SeeImgService;
 import com.ssy.app.vo.JsonBean;
+import com.ssy.app.vo.PageBeanVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SeeImgServiceImpl implements SeeImgService {
@@ -118,5 +121,65 @@ public class SeeImgServiceImpl implements SeeImgService {
         }
         return bean;
 
+    }
+
+    /**
+     *
+     * @param page
+     *      从第几页开始查
+     * @param count
+     *      每页显示图片的条数
+     * @return
+     *      正常：返回查到的图片的集合
+     *      异常:返回异常状态
+     */
+    @Override
+    public PageBeanVo<SeeImg> showImgAll(Integer page, Integer count) {
+        PageBeanVo vo  = new PageBeanVo();
+        List<SeeImg> list = null;
+        try {
+            list = seeImgDao.showImgAll(page, count);
+            vo.setCode(0);
+            vo.setCount(list.size());
+            vo.setData(list);
+            vo.setMsg("图片查询成功");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            vo.setCode(-1);
+            vo.setMsg("暂无数据");
+        }
+
+        return vo;
+
+    }
+
+    @Override
+    public PageBeanVo<SeeImg> showSeeImgByClass(Integer cid, Integer page, Integer count) {
+        PageBeanVo vo  = new PageBeanVo();
+        List<SeeImg> list = null;
+
+        try {
+            list = seeImgDao.showSeeImgByclass(cid,page,count);
+            vo.setCode(0);
+            vo.setCount(list.size());
+            vo.setData(list);
+            vo.setMsg("图片查询成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            vo.setCode(-1);
+            vo.setMsg("暂无数据");
+        }
+
+
+        return vo;
+    }
+
+    @Override
+    public JsonBean starImg(Integer star) {
+
+
+
+        return null;
     }
 }
