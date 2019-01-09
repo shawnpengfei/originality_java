@@ -4,6 +4,8 @@ package com.ssy.app.controller;
 import com.ssy.app.enity.SeeImg;
 import com.ssy.app.service.SeeImgService;
 import com.ssy.app.vo.JsonBean;
+import com.ssy.app.vo.PageBeanVo;
+import com.ssy.app.vo.ResultVo;
 import com.sun.deploy.net.HttpResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,7 +35,7 @@ public class SeeImgController {
 
     @PostMapping("/addImgs")
     @CrossOrigin
-    @ApiOperation(notes = "add图片入口",tags = {"图片添加"},value = "addImg")
+    @ApiOperation(notes = "图片添加接口",tags = {"图片添加"},value = "addImg")
     public JsonBean addImgs(HttpServletRequest request, HttpServletResponse response){
 
         JsonBean bean  = new JsonBean();
@@ -91,6 +93,55 @@ public class SeeImgController {
 
         return sImgService.addSeeImgSelective(img);
     }
+
+
+    @GetMapping("/showSeeImgAll")
+    @CrossOrigin
+    @ApiOperation(notes = "分页查看所有图片",tags = {"查看图片"},value = "showSeeImg")
+    public PageBeanVo showSeeImgAll(Integer page, Integer count ){
+        PageBeanVo vo = new PageBeanVo();
+        if( page != null && !page.equals("") && count != null && !count.equals("")){
+
+            vo = sImgService.showImgAll(page, count);
+
+            return vo;
+        } else{
+            vo.setCode(-1);
+            vo.setMsg("传入参数不合法");
+            return vo;
+        }
+
+
+    }
+
+    @GetMapping("/showSeeImgByClass")
+    @CrossOrigin
+    @ApiOperation(notes = "分类查看图片",tags = {"分类查看图片"},value = "showImgByClass")
+    public PageBeanVo showSeeImgByClass(Integer cid, Integer page, Integer count ){
+        PageBeanVo vo = new PageBeanVo();
+        if(cid != null && !cid.equals("") &&  page != null && !page.equals("") &&  count != null && !count.equals("")){
+            vo = sImgService.showSeeImgByClass(cid,page, count);
+            return vo;
+        } else{
+            vo.setCode(-1);
+            vo.setMsg("传入参数不合法");
+            return vo;
+        }
+
+
+    }
+
+    /*@GetMapping("/starImg")
+    @CrossOrigin
+    @ApiOperation(notes = "收藏图片",tags = {"收藏图片"},value = "starImg")
+    public JsonBean startImg(Integer imgId, Integer star){
+
+        JsonBean bean  = new JsonBean();
+        if(star != null && !star.equals("")){
+            sImgService.starImg(star);
+        }
+
+    }*/
 
 
 }
