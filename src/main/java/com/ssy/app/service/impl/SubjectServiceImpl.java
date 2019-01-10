@@ -17,7 +17,7 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Autowired
     private SubjectMapper subjectDao;
-
+    @Autowired
     private SubjectclassMapper subjectclassDao;
 
     //查询所有专题分类
