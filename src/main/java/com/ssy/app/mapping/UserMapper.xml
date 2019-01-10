@@ -74,4 +74,7 @@
     from user
     where login_name = #{loginName}
   </select>
+  <select id="selectMaxId" resultType="int">
+  	select max(id) from user
+  </select>
 </mapper>
