@@ -14,6 +14,6 @@ public interface SubjectService {
     //查询所有专题分类详情
     PageBeanVo<Subjectclass> queryPage(int page, int limit);
 
-    //根据ID查询专题详情
+    //根据ID查询专题详 s 情
     ResultVo selectById(int id);
 }
