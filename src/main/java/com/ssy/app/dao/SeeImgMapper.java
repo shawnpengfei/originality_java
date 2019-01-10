@@ -22,5 +22,7 @@ public interface SeeImgMapper {
 
     List <SeeImg> showSeeImgByclass(Long cid, Integer page, Integer count);
 
-    int startImg(Integer imgId);
+    int startImg(Long uid,Long imgId,Long starsNum);
+
+    List<SeeImg> showMyStarImg(Long uid,Integer page, Integer count);
 }

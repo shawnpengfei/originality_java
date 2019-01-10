@@ -23,6 +23,14 @@
     insert into see_img_collection (id, imgid, uid)
     values (#{id,jdbcType=BIGINT}, #{imgid,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT})
   </insert>
+
+<!--收藏图片时，在看图收藏表中插入数据-->
+  <insert id="insertCollection" parameterType="java.lang.Long">
+    insert into see_img_collection (imgid, uid)
+    values (#{imgid,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT})
+  </insert>
+
+
   <insert id="insertSelective" parameterType="com.ssy.app.enity.SeeImgCollection">
     insert into see_img_collection
     <trim prefix="(" suffix=")" suffixOverrides=",">

@@ -14,4 +14,6 @@ public interface SeeImgCollectionMapper {
     int updateByPrimaryKeySelective(SeeImgCollection record);
 
     int updateByPrimaryKey(SeeImgCollection record);
+
+    int insertCollection(Long uid, Long imgId);
 }

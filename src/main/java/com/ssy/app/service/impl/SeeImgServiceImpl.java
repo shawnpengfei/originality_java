@@ -1,5 +1,6 @@
 package com.ssy.app.service.impl;
 
+import com.ssy.app.dao.SeeImgCollectionMapper;
 import com.ssy.app.dao.SeeImgMapper;
 import com.ssy.app.enity.SeeImg;
 import com.ssy.app.service.SeeImgService;
@@ -15,6 +16,9 @@ public class SeeImgServiceImpl implements SeeImgService {
 
     @Autowired
     private SeeImgMapper seeImgDao;
+
+    @Autowired
+    private SeeImgCollectionMapper imgCollectionDao;
 
     @Override
     public JsonBean deleteSeenImgById(Long id) {
@@ -35,7 +39,7 @@ public class SeeImgServiceImpl implements SeeImgService {
     @Override
     public JsonBean addSeeImg(SeeImg seeImg) {
         JsonBean bean  = new JsonBean();
-        int i = seeImgDao.insert(seeImg);
+        int i = seeImgDao.insertSelective(seeImg);
 
         if ( i > 0){
             bean.setCode(0);
@@ -155,7 +159,7 @@ public class SeeImgServiceImpl implements SeeImgService {
     }
 
     @Override
-    public PageBeanVo<SeeImg> showSeeImgByClass(Integer cid, Integer page, Integer count) {
+    public PageBeanVo<SeeImg> showSeeImgByClass(Long cid, Integer page, Integer count) {
         PageBeanVo vo  = new PageBeanVo();
         List<SeeImg> list = null;
 
@@ -176,10 +180,45 @@ public class SeeImgServiceImpl implements SeeImgService {
     }
 
     @Override
-    public JsonBean starImg(Integer star) {
+    public JsonBean starImg(Long uid,Long imgId,Long starsNum) {
 
+        JsonBean bean = new JsonBean();
+        //在看图表中把收藏数增加1
+        int i = seeImgDao.startImg(uid, imgId, starsNum);
+        //在看图收藏表中插入收藏数据
+        int j = imgCollectionDao.insertCollection(uid, imgId);
+        if (i > 0 && j > 0){
+            bean.setInfo("收藏成功");
+            bean.setCode(0);
+            return bean;
+        } else{
+            bean.setCode(-1);
+            bean.setInfo("网络异常,请稍候重试!");
+            return bean;
+        }
 
+        //在看图收藏表中加入数据
 
-        return null;
+        /*imgCollectionDao.();*/
+
+    }
+
+    @Override
+    public PageBeanVo<SeeImg> showMystarImg(Long uid,Integer page,Integer count) {
+        PageBeanVo vo = new PageBeanVo();
+        try {
+            List<SeeImg> list = seeImgDao.showMyStarImg(uid, page, count);
+            vo.setCode(0);
+            vo.setMsg("查询成功");
+            vo.setCount(list.size());
+            vo.setData(list);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            vo.setCode(-1);
+            vo.setMsg("暂无数据");
+        }
+
+        return vo;
     }
 }

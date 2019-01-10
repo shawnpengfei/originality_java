@@ -12,12 +12,16 @@
   <sql id="Base_Column_List">
     id, cid, uid, stars_num, imgurl, descr
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from see_img
+
+
+  <update id="startImg" parameterType="com.ssy.app.enity.SeeImg">
+    update see_img
+    set stars_num = #{starsNum,jdbcType=BIGINT},
     where id = #{id,jdbcType=BIGINT}
-  </select>
+  </update>
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from see_img
     where id = #{id,jdbcType=BIGINT}
@@ -101,4 +105,39 @@
       descr = #{descr,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+ <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from see_img
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+
+  <!--分页展示图片-->
+  <select id="showImgAll" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT U.nickname,U.img, M.id, M.imgurl,M.stars_num,M.descr from see_img M
+    INNER JOIN userinfo U
+    on M.uid = U.uid
+    ORDER BY M.id limit #{index,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+
+  <!--分类分页展示图片-->
+  <select id="showSeeImgByclass" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT U.nickname,U.img, M.id, M.imgurl,M.stars_num,M.descr from see_img M
+    INNER JOIN userinfo U
+    on M.uid = U.uid
+    where M.cid = #{cid,jdbcType=INTEGER}
+    ORDER BY M.id limit #{index,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+
+  <!--查看当前登录用户收藏的图片-->
+  <select id="showMyStarImg" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT U.nickname,U.img, M.id, M.imgurl,M.stars_num,M.descr from see_img M
+    INNER JOIN userinfo U
+    on M.uid = U.uid
+    where U.uid = #{uid,jdbcType=BIGINT}
+    ORDER BY M.id limit #{index,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+
 </mapper>

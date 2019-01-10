@@ -5,7 +5,6 @@ import com.ssy.app.enity.SeeImg;
 import com.ssy.app.service.SeeImgService;
 import com.ssy.app.vo.JsonBean;
 import com.ssy.app.vo.PageBeanVo;
-import com.ssy.app.vo.ResultVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.fileupload.FileItem;
@@ -19,13 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/seeImg")
-@Api(produces = "看图界面添加图片的入口",value = "添加图片")
+@Api(produces = "看图功能接口",value = "SeeImg")
 public class SeeImgController {
 
     @Autowired
@@ -96,7 +94,7 @@ public class SeeImgController {
     @GetMapping("/showSeeImgAll")
     @CrossOrigin
     @ApiOperation(notes = "分页查看所有图片",tags = {"查看图片"},value = "showSeeImg")
-    public PageBeanVo showSeeImgAll(Integer page, Integer count ){
+    public PageBeanVo showSeeImgAll(Integer page, Integer count){
         PageBeanVo vo = new PageBeanVo();
         if( page != null && !page.equals("") && count != null && !count.equals("")){
 
@@ -112,10 +110,11 @@ public class SeeImgController {
 
     }
 
+
     @GetMapping("/showSeeImgByClass")
     @CrossOrigin
-    @ApiOperation(notes = "分类查看图片",tags = {"分类查看图片"},value = "showImgByClass")
-    public PageBeanVo showSeeImgByClass(Integer cid, Integer page, Integer count ){
+    @ApiOperation(notes = "分类查看图片",tags = {"查看图片"},value = "showImgByClass")
+    public PageBeanVo showSeeImgByClass(Long cid, Integer page, Integer count ){
         PageBeanVo vo = new PageBeanVo();
         if(cid != null && !cid.equals("") &&  page != null && !page.equals("") &&  count != null && !count.equals("")){
             vo = sImgService.showSeeImgByClass(cid,page, count);
@@ -129,17 +128,50 @@ public class SeeImgController {
 
     }
 
-    /*@GetMapping("/starImg")
+    /**
+     *
+     * @param uid
+     *      当前登录用户的id
+     * @param imgId
+     *      收藏的图片的id
+     * @param starsNum
+     *      图片收藏的数量
+     * @return
+     */
+
+    @GetMapping("/starImg")
     @CrossOrigin
     @ApiOperation(notes = "收藏图片",tags = {"收藏图片"},value = "starImg")
-    public JsonBean startImg(Integer imgId, Integer star){
+    public JsonBean startImg(Long uid, Long imgId, Long starsNum){
 
         JsonBean bean  = new JsonBean();
-        if(star != null && !star.equals("")){
-            sImgService.starImg(star);
+        if(imgId != null && !imgId.equals("") && uid != null && !uid.equals("")){
+            return  sImgService.starImg(uid, imgId, starsNum);
+        }else{
+            bean.setInfo("收藏失败");
+            bean.setCode(-1);
+            return bean;
         }
 
-    }*/
+    }
 
 
+
+    @GetMapping("/showMyStarImg")
+    @CrossOrigin
+    @ApiOperation(notes = "我收藏的图片",tags = {"我的收藏"}, value = "showMystarImg")
+    /////////////////////////////////////////////////////////////////////////
+    //当前代码的sql部分存在问题，需要重写
+    public PageBeanVo<SeeImg> showMyStarImg(Long uid,Integer page, Integer count ){
+        PageBeanVo vo = new PageBeanVo();
+        if (uid != null && !uid.equals("") && page != null && !page.equals("") && count != null && !count.equals("")){
+            vo = sImgService.showMystarImg(uid, page, count);
+            return vo;
+        }else {
+            vo.setCode(-1);
+            vo.setMsg("传入参数不合法");
+            return vo;
+        }
+
+    }
 }

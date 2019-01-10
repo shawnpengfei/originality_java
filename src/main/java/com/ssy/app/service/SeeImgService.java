@@ -20,9 +20,11 @@ public interface SeeImgService {
 
     JsonBean updateById(SeeImg record);
 
-    PageBeanVo showImgAll(Integer page, Integer count);
+    PageBeanVo<SeeImg> showImgAll(Integer page, Integer count);
 
-    PageBeanVo showSeeImgByClass(Integer cid, Integer page, Integer count);
+    PageBeanVo<SeeImg> showSeeImgByClass(Long cid, Integer page, Integer count);
 
-    JsonBean starImg(Integer star);
+    JsonBean starImg(Long uid,Long imgId,Long starsNum);
+
+    PageBeanVo<SeeImg> showMystarImg(Long uid,Integer page,Integer count);
 }
