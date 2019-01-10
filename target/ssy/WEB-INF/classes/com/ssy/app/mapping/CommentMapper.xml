@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssy.app.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.ssy.app.enity.Comment">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="at_id" jdbcType="BIGINT" property="atId" />
+    <result column="uid" jdbcType="BIGINT" property="uid" />
+    <result column="descr" jdbcType="VARCHAR" property="descr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, at_id, uid, descr
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from comment
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ssy.app.enity.Comment">
+    insert into comment (id, at_id, uid, descr
+      )
+    values (#{id,jdbcType=BIGINT}, #{atId,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT}, #{descr,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssy.app.enity.Comment">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="atId != null">
+        at_id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="descr != null">
+        descr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="atId != null">
+        #{atId,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="descr != null">
+        #{descr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssy.app.enity.Comment">
+    update comment
+    <set>
+      <if test="atId != null">
+        at_id = #{atId,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="descr != null">
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssy.app.enity.Comment">
+    update comment
+    set at_id = #{atId,jdbcType=BIGINT},
+      uid = #{uid,jdbcType=BIGINT},
+      descr = #{descr,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

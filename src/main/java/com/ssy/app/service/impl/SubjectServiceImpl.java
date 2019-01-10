@@ -1,6 +1,7 @@
 package com.ssy.app.service.impl;
 
 import com.ssy.app.dao.SubjectMapper;
+import com.ssy.app.dao.SubjectclassMapper;
 import com.ssy.app.enity.Subjectclass;
 import com.ssy.app.service.SubjectService;
 import com.ssy.app.vo.PageBeanVo;
