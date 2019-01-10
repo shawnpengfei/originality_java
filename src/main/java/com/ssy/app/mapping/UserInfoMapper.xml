@@ -103,4 +103,10 @@
       phonenumber = #{phonenumber,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="selectIdByUid" parameterType="java.lang.Long" resultType="java.lang.Long">
+    select
+    id
+    from userinfo
+    where uid = #{uid,jdbcType=BIGINT}
+  </select>
 </mapper>

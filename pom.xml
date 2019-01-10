@@ -264,7 +264,7 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!--日志处理-->
+        <!-- 日志处理 -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
@@ -346,18 +346,18 @@
         </resources>
         <finalName>ssy</finalName>
         <plugins>
-           <plugin>
+            <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <!--<url>http://47.107.64.250:8080/manager/text</url>-->
-                    <!--<username>king</username>
-                    <password>admin</password>-->
-                    <!--<update>true</update>-->
+                    <url>http://47.107.64.250:8080/manager/text</url>
+                    <username>king</username>
+                    <password>admin</password>
+                    <update>true</update>
                     <uriEncoding>UTF-8</uriEncoding>
-                   <!-- &lt;!&ndash; 配置web应用的路径 &ndash;&gt;-->
-                    <path>/SSY</path>
+                    <!-- 配置web应用的路径 -->
+                    <path>/mgzf</path>
                 </configuration>
             </plugin>
             <!-- 指定编译版本 -->
