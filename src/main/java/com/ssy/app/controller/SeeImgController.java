@@ -56,7 +56,7 @@ public class SeeImgController {
                         // 获取文件名
                         String name = fileItem.getName();
                         // 将文件上传到服务器的D:/upload文件夹下
-                        String path = "D:/upload";
+                        String path = "/imgsss";
 
                         // 如果路径不存在，创建
                         File file = new File(path);
