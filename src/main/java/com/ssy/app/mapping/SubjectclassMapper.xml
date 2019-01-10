@@ -79,4 +79,13 @@
       imgurl = #{imgurl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <!--查询所有-->
+    <select id="selectByPage" resultType="com.ssy.app.enity.Subjectclass" parameterType="int">
+        select id,name,jid,imgurl from subjectclass order by jid limit #{index},#{limit}
+    </select>
+    <!--查询数量-->
+    <select id="selectCount" resultType="int">
+        select count(*) from subjectclass
+    </select>
+
 </mapper>
