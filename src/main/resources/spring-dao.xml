@@ -12,8 +12,7 @@
 	<context:property-placeholder
 		location="classpath:dbconfig.properties"></context:property-placeholder>
 	<!--配置数据库连接池 -->
-	<bean id="dataSource"
-		class="com.alibaba.druid.pool.DruidDataSource">
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 		<property name="driverClassName" value="${dbdriver}"></property>
 		<property name="url" value="${dburl}"></property>
 		<property name="username" value="${dbuser}"></property>
