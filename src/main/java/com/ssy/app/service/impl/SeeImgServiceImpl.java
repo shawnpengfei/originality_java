@@ -9,7 +9,9 @@ import com.ssy.app.vo.PageBeanVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SeeImgServiceImpl implements SeeImgService {
@@ -180,13 +182,20 @@ public class SeeImgServiceImpl implements SeeImgService {
     }
 
     @Override
-    public JsonBean starImg(Long uid,Long imgId,Long starsNum) {
-
+    public JsonBean starImg(Long uid,Long id,Long starsNum) {
         JsonBean bean = new JsonBean();
+        Map<String,Object> map = new HashMap<>();
+        map.put("starsNum",starsNum);
+        map.put("id",id);
+
         //在看图表中把收藏数增加1
-        int i = seeImgDao.startImg(uid, imgId, starsNum);
+        int i = seeImgDao.startImg(map);
         //在看图收藏表中插入收藏数据
-        int j = imgCollectionDao.insertCollection(uid, imgId);
+        Map<String,Object> map1 = new HashMap<>();
+        map1.put("imgid",id);
+        map1.put("uid",uid);
+        int j = imgCollectionDao.insertCollection(map1);
+
         if (i > 0 && j > 0){
             bean.setInfo("收藏成功");
             bean.setCode(0);
@@ -197,17 +206,17 @@ public class SeeImgServiceImpl implements SeeImgService {
             return bean;
         }
 
-        //在看图收藏表中加入数据
-
-        /*imgCollectionDao.();*/
-
     }
 
     @Override
-    public PageBeanVo<SeeImg> showMystarImg(Long uid,Integer page,Integer count) {
+    public PageBeanVo<SeeImg> showMystarImg(Long uid,Integer page,Integer limit) {
         PageBeanVo vo = new PageBeanVo();
+        Map<String,Object> map = new HashMap<>();
+        map.put("uid",uid);
+        map.put("index",(page - 1) * limit);
+        map.put("limit",limit);
         try {
-            List<SeeImg> list = seeImgDao.showMyStarImg(uid, page, count);
+            List<SeeImg> list = seeImgDao.showMyStarImg(map);
             vo.setCode(0);
             vo.setMsg("查询成功");
             vo.setCount(list.size());

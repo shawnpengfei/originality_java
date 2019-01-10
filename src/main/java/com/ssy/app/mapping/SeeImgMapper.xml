@@ -14,10 +14,10 @@
   </sql>
 
 
-  <update id="startImg" parameterType="com.ssy.app.enity.SeeImg">
+  <update id="startImg" parameterType="map">
     update see_img
-    set stars_num = #{starsNum,jdbcType=BIGINT},
-    where id = #{id,jdbcType=BIGINT}
+    set stars_num =#{starsNum}
+    where id = #{id}
   </update>
 
 
@@ -133,11 +133,11 @@
 
   <!--查看当前登录用户收藏的图片-->
   <select id="showMyStarImg" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    SELECT U.nickname,U.img, M.id, M.imgurl,M.stars_num,M.descr from see_img M
-    INNER JOIN userinfo U
-    on M.uid = U.uid
-    where U.uid = #{uid,jdbcType=BIGINT}
-    ORDER BY M.id limit #{index,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+    SELECT M.imgurl, M.descr, M.uid,M.id
+	FROM see_img_collection C
+    INNER JOIN see_img M ON C.imgid = M.id
+    WHERE 	C.uid = #{uid,jdbcType=BIGINT}
+    ORDER BY C.id LIMIT #{index,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
   </select>
 
 </mapper>

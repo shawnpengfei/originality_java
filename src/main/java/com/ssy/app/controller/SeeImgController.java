@@ -23,15 +23,15 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/seeImg")
-@Api(produces = "看图功能接口",value = "SeeImg")
+@Api(produces = "看图功能总接口",value = "SeeImg")
 public class SeeImgController {
 
     @Autowired
     private SeeImgService sImgService;
 
-    @PostMapping("/addImgs")
+    @RequestMapping("/addImgs")
     @CrossOrigin
-    @ApiOperation(notes = "图片添加接口",tags = {"图片添加"},value = "addImg")
+    @ApiOperation("图片添加接口")
     public JsonBean addImgs(HttpServletRequest request, HttpServletResponse response){
 
         JsonBean bean  = new JsonBean();
@@ -93,12 +93,12 @@ public class SeeImgController {
 
     @GetMapping("/showSeeImgAll")
     @CrossOrigin
-    @ApiOperation(notes = "分页查看所有图片",tags = {"查看图片"},value = "showSeeImg")
-    public PageBeanVo showSeeImgAll(Integer page, Integer count){
+    @ApiOperation("分页查看所有图片接口")
+    public PageBeanVo showSeeImgAll(Integer page, Integer limit){
         PageBeanVo vo = new PageBeanVo();
-        if( page != null && !page.equals("") && count != null && !count.equals("")){
+        if( page != null && !page.equals("") && limit != null && !limit.equals("")){
 
-            vo = sImgService.showImgAll(page, count);
+            vo = sImgService.showImgAll(page, limit);
 
             return vo;
         } else{
@@ -113,11 +113,11 @@ public class SeeImgController {
 
     @GetMapping("/showSeeImgByClass")
     @CrossOrigin
-    @ApiOperation(notes = "分类查看图片",tags = {"查看图片"},value = "showImgByClass")
-    public PageBeanVo showSeeImgByClass(Long cid, Integer page, Integer count ){
+    @ApiOperation("分类、分页查看图片接口")
+    public PageBeanVo showSeeImgByClass(Long cid, Integer page, Integer limit ){
         PageBeanVo vo = new PageBeanVo();
-        if(cid != null && !cid.equals("") &&  page != null && !page.equals("") &&  count != null && !count.equals("")){
-            vo = sImgService.showSeeImgByClass(cid,page, count);
+        if(cid != null && !cid.equals("") &&  page != null && !page.equals("") &&  limit != null && !limit.equals("")){
+            vo = sImgService.showSeeImgByClass(cid,page, limit);
             return vo;
         } else{
             vo.setCode(-1);
@@ -132,7 +132,7 @@ public class SeeImgController {
      *
      * @param uid
      *      当前登录用户的id
-     * @param imgId
+     * @param id
      *      收藏的图片的id
      * @param starsNum
      *      图片收藏的数量
@@ -141,12 +141,12 @@ public class SeeImgController {
 
     @GetMapping("/starImg")
     @CrossOrigin
-    @ApiOperation(notes = "收藏图片",tags = {"收藏图片"},value = "starImg")
-    public JsonBean startImg(Long uid, Long imgId, Long starsNum){
+    @ApiOperation("收藏图片接口")
+    public JsonBean startImg(Long uid, Long id, Long starsNum){
 
         JsonBean bean  = new JsonBean();
-        if(imgId != null && !imgId.equals("") && uid != null && !uid.equals("")){
-            return  sImgService.starImg(uid, imgId, starsNum);
+        if(id != null && !id.equals("") && uid != null && !uid.equals("")){
+            return  sImgService.starImg(uid, id, starsNum);
         }else{
             bean.setInfo("收藏失败");
             bean.setCode(-1);
@@ -155,17 +155,13 @@ public class SeeImgController {
 
     }
 
-
-
     @GetMapping("/showMyStarImg")
     @CrossOrigin
-    @ApiOperation(notes = "我收藏的图片",tags = {"我的收藏"}, value = "showMystarImg")
-    /////////////////////////////////////////////////////////////////////////
-    //当前代码的sql部分存在问题，需要重写
-    public PageBeanVo<SeeImg> showMyStarImg(Long uid,Integer page, Integer count ){
+    @ApiOperation("查看我收藏的图片接口")
+    public PageBeanVo<SeeImg> showMyStarImg(Long uid,Integer page, Integer limit ){
         PageBeanVo vo = new PageBeanVo();
-        if (uid != null && !uid.equals("") && page != null && !page.equals("") && count != null && !count.equals("")){
-            vo = sImgService.showMystarImg(uid, page, count);
+        if (uid != null && !uid.equals("") && page != null && !page.equals("") && limit != null && !limit.equals("")){
+            vo = sImgService.showMystarImg(uid, page, limit);
             return vo;
         }else {
             vo.setCode(-1);

@@ -2,8 +2,10 @@ package com.ssy.app.dao;
 
 import com.ssy.app.enity.SeeImg;
 import com.ssy.app.vo.PageBeanVo;
+import org.jboss.logging.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SeeImgMapper {
     int deleteByPrimaryKey(Long id);
@@ -20,9 +22,9 @@ public interface SeeImgMapper {
 
     List<SeeImg> showImgAll(Integer page, Integer count);
 
-    List <SeeImg> showSeeImgByclass(Long cid, Integer page, Integer count);
+    List <SeeImg> showSeeImgByclass(Long cid, Integer page,  Integer count);
 
-    int startImg(Long uid,Long imgId,Long starsNum);
+    int startImg(Map<String ,Object> param);
 
-    List<SeeImg> showMyStarImg(Long uid,Integer page, Integer count);
+    List<SeeImg> showMyStarImg(Map<String ,Object> param);
 }

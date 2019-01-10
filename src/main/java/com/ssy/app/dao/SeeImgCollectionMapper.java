@@ -1,6 +1,11 @@
 package com.ssy.app.dao;
 
+import com.ssy.app.enity.SeeImg;
 import com.ssy.app.enity.SeeImgCollection;
+import org.jboss.logging.Param;
+
+import java.util.List;
+import java.util.Map;
 
 public interface SeeImgCollectionMapper {
     int deleteByPrimaryKey(Long id);
@@ -15,5 +20,8 @@ public interface SeeImgCollectionMapper {
 
     int updateByPrimaryKey(SeeImgCollection record);
 
-    int insertCollection(Long uid, Long imgId);
+    int insertCollection(Map<String,Object> param);
+
+   // List<SeeImg> showMystarImg(Long uid,Integer page,Integer count);
+
 }

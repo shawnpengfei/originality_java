@@ -50,7 +50,7 @@ public class SeeImg {
     }
 
     public void setImgurl(String imgurl) {
-        this.imgurl = imgurl == null ? null : imgurl.trim();
+        this.imgurl = imgurl;
     }
 
     public String getDescr() {
@@ -58,6 +58,6 @@ public class SeeImg {
     }
 
     public void setDescr(String descr) {
-        this.descr = descr == null ? null : descr.trim();
+        this.descr = descr;
     }
 }

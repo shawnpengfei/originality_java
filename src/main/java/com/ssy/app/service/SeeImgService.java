@@ -24,7 +24,7 @@ public interface SeeImgService {
 
     PageBeanVo<SeeImg> showSeeImgByClass(Long cid, Integer page, Integer count);
 
-    JsonBean starImg(Long uid,Long imgId,Long starsNum);
+    JsonBean starImg(Long uid,Long id,Long starsNum);
 
     PageBeanVo<SeeImg> showMystarImg(Long uid,Integer page,Integer count);
 }
