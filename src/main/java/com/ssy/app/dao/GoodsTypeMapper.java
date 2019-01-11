@@ -2,6 +2,8 @@ package com.ssy.app.dao;
 
 import com.ssy.app.enity.GoodsType;
 
+import java.util.List;
+
 public interface GoodsTypeMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,6 @@ public interface GoodsTypeMapper {
     int updateByPrimaryKeySelective(GoodsType record);
 
     int updateByPrimaryKey(GoodsType record);
+
+    List<GoodsType> showFatherGoodsType();
 }

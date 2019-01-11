@@ -13,7 +13,7 @@ public class Goods {
 
     private Long num;
 
-    private String gimg;
+    private String img;
 
     public Long getId() {
         return id;
@@ -63,11 +63,11 @@ public class Goods {
         this.num = num;
     }
 
-    public String getGimg() {
-        return gimg;
+    public String getImg() {
+        return img;
     }
 
-    public void setGimg(String gimg) {
-        this.gimg = gimg == null ? null : gimg.trim();
+    public void setImg(String img) {
+        this.img = img == null ? null : img.trim();
     }
 }

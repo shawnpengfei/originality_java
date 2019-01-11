@@ -8,37 +8,35 @@
     <result column="typeid" jdbcType="BIGINT" property="typeid" />
     <result column="descr" jdbcType="VARCHAR" property="descr" />
     <result column="num" jdbcType="BIGINT" property="num" />
-    <result column="img" jdbcType="VARCHAR" property="gimg" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, price, typeid, descr, num, gimg
+    id, name, price, typeid, descr, num, img
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from goods
     where id = #{id,jdbcType=BIGINT}
   </select>
 
-    <!--根据商品类型分页查找商品-->
+  <!--根据商品类型分页查找商品-->
   <select id="showGoodsByCid" parameterType="map" resultMap="BaseResultMap">
      SELECT g.id, g.name,g.price,g.img,g.descr,g.num from goods g
      where g.typeid = #{typeid}
      ORDER BY g.id limit #{index,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
   </select>
 
-
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from goods
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.ssy.app.enity.Goods">
-    insert into goods (id, name, price, 
-      typeid, descr, num, gimg
+    insert into goods (id, name, price,
+      typeid, descr, num, img
       )
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
-      #{typeid,jdbcType=BIGINT}, #{descr,jdbcType=VARCHAR}, #{num,jdbcType=BIGINT}, #{gimg,jdbcType=VARCHAR}
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE},
+      #{typeid,jdbcType=BIGINT}, #{descr,jdbcType=VARCHAR}, #{num,jdbcType=BIGINT}, #{img,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.ssy.app.enity.Goods">
@@ -62,8 +60,8 @@
       <if test="num != null">
         num,
       </if>
-      <if test="gimg != null">
-        gimg,
+      <if test="img != null">
+        img,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -85,8 +83,8 @@
       <if test="num != null">
         #{num,jdbcType=BIGINT},
       </if>
-      <if test="gimg != null">
-        #{gimg,jdbcType=VARCHAR},
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -108,8 +106,8 @@
       <if test="num != null">
         num = #{num,jdbcType=BIGINT},
       </if>
-      <if test="gimg != null">
-        gimg = #{gimg,jdbcType=VARCHAR},
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -121,7 +119,7 @@
       typeid = #{typeid,jdbcType=BIGINT},
       descr = #{descr,jdbcType=VARCHAR},
       num = #{num,jdbcType=BIGINT},
-      gimg = #{gimg,jdbcType=VARCHAR}
+      img = #{img,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

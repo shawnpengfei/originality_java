@@ -3,6 +3,7 @@ package com.ssy.app.service.impl;
 import com.ssy.app.dao.GoodsMapper;
 import com.ssy.app.enity.Goods;
 import com.ssy.app.service.GoodsService;
+import com.ssy.app.vo.JsonBean;
 import com.ssy.app.vo.PageBeanVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Autowired
     GoodsMapper Gdao;
+
     @Override
     public PageBeanVo<Goods> showGoodsByCid(Long typeid, Integer page, Integer limit ) {
 
@@ -37,5 +39,15 @@ public class GoodsServiceImpl implements GoodsService {
             vo.setMsg("暂无数据");
         }
         return vo;
+    }
+
+    @Override
+    public JsonBean selectGoodsById(Long id) {
+
+        JsonBean bean = new JsonBean();
+        Goods goods = Gdao.selectByPrimaryKey(id);
+        bean.setCode(0);
+        bean.setInfo(goods);
+        return bean;
     }
 }
