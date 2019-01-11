@@ -26,7 +26,7 @@ public class UserController {
     private UserInfoService userInfoService;
     //用户注册
     @GetMapping("/register")
-    @ApiOperation(notes = "注册接口",tags = {"注册接口"},value = "注册接口")
+    @ApiOperation(notes = "注册接口",value = "注册接口")
     public ResponseJson register(@ApiParam(name="loginName",value="用户名",required=true) String loginName,
                                  @ApiParam(name="password",value="密码",required=true)String password,
                                  @ApiParam(name="nickName",value="昵称",required=true)String nickName,
@@ -55,7 +55,7 @@ public class UserController {
     }
 
     @GetMapping("/validator")
-    @ApiOperation(notes = "获取手机验证码",tags = {"验证码"},value = "获取验证码")
+    @ApiOperation(notes = "获取手机验证码",value = "获取验证码")
     public String validatorCode(){
         String validate = YhzUtils.setValidator();
         vo.set(validate);
@@ -63,7 +63,6 @@ public class UserController {
     }
     @GetMapping("/login")
     @ApiOperation(notes = "登录接口，成功后返回用户的登陆令牌和用户id,所有的接口请求头中都要有登陆令牌来验证登陆用户",
-            tags = "登陆",
             value = "登陆接口，成功后返回用户的登陆令牌和用户id")
     public ResponseJson login(String loginName,String password){
         return userService.login(loginName,password);

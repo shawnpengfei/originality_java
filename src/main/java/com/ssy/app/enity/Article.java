@@ -21,6 +21,8 @@ public class Article {
 
     private Date creattime;
 
+    private Integer classifyId;
+
     public Long getId() {
         return id;
     }
@@ -91,5 +93,13 @@ public class Article {
 
     public void setCreattime(Date creattime) {
         this.creattime = creattime;
+    }
+
+    public Integer getClassifyId() {
+        return classifyId;
+    }
+
+    public void setClassifyId(Integer classifyId) {
+        this.classifyId = classifyId;
     }
 }

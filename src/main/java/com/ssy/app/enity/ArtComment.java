@@ -1,6 +1,8 @@
 package com.ssy.app.enity;
 
-public class Comment {
+import java.util.Date;
+
+public class ArtComment {
     private Long id;
 
     private Long atId;
@@ -8,6 +10,10 @@ public class Comment {
     private Long uid;
 
     private String descr;
+
+    private Date createtime;
+
+    private Integer like;
 
     public Long getId() {
         return id;
@@ -39,5 +45,21 @@ public class Comment {
 
     public void setDescr(String descr) {
         this.descr = descr == null ? null : descr.trim();
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    public Integer getLike() {
+        return like;
+    }
+
+    public void setLike(Integer like) {
+        this.like = like;
     }
 }

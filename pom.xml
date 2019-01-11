@@ -362,7 +362,7 @@
                     <update>true</update>
                     <uriEncoding>UTF-8</uriEncoding>
                     <!-- 配置web应用的路径 -->
-                    <path>/mgzf</path>
+                    <path>/ssy</path>
                 </configuration>
             </plugin>
             <!-- 指定编译版本 -->
