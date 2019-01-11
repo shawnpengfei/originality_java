@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Api(produces = "这是专题接口文档",tags = "专题",value = "接口文档")
-
 public class SubjectController {
 
     @Autowired
@@ -24,14 +23,14 @@ public class SubjectController {
         //获取所有专题
         @GetMapping("/subjectAll")
         @CrossOrigin
-        @ApiOperation(notes = "分页查询专题入口",value = "selectByPage")
+        @ApiOperation(notes = "查询专题入口",value = "selectByPage")
         public ResultVo selectAll() {
                 return subjectService.selectAll();
         }
         //获取所有专题详情
         @PostMapping("/subjectclassByPage")
         @CrossOrigin
-        @ApiOperation(notes = "查询专题详情入口",value = "subjectclassByPage")
+        @ApiOperation(notes = "分页查询专题详情入口",value = "subjectclassByPage")
         public PageBeanVo<Subjectclass> subjectclassByPage(int page, int limit){
             return subjectService.queryPage(page, limit);
         }

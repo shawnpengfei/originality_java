@@ -13,6 +13,8 @@ public class Goods {
 
     private Long num;
 
+    private String gimg;
+
     public Long getId() {
         return id;
     }
@@ -59,5 +61,13 @@ public class Goods {
 
     public void setNum(Long num) {
         this.num = num;
+    }
+
+    public String getGimg() {
+        return gimg;
+    }
+
+    public void setGimg(String gimg) {
+        this.gimg = gimg == null ? null : gimg.trim();
     }
 }
