@@ -13,6 +13,21 @@
     <result column="info" jdbcType="VARCHAR" property="info" />
     <result column="imgurl" jdbcType="VARCHAR" property="imgurl" />
   </resultMap>
+    <resultMap id="BaseResultMap2" type="com.ssy.app.vo.StyVo">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="cid" jdbcType="INTEGER" property="cid" />
+        <result column="rid" jdbcType="INTEGER" property="rid" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="imgurl" jdbcType="VARCHAR" property="imgurl" />
+        <result column="city" jdbcType="VARCHAR" property="city" />
+        <result column="region" jdbcType="VARCHAR" property="region" />
+        <result column="position" jdbcType="VARCHAR" property="position" />
+        <result column="sex" jdbcType="INTEGER" property="sex" />
+        <result column="weixin" jdbcType="VARCHAR" property="weixin" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="info" jdbcType="VARCHAR" property="info" />
+    </resultMap>
   <sql id="Base_Column_List">
     id, name, sex, position, phone, weixin, email, aid, info, imgurl
   </sql>
@@ -149,4 +164,35 @@
       imgurl = #{imgurl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <select id="selectByPage" resultMap="BaseResultMap2" parameterType="int">
+        select sl.id id, sc.id cid,sr.id rid, sl.`name`,sc.`name` city,sr.`name` region, phone from stylist sl
+         inner join styregion sr on sr.id = sl.aid
+         inner join stycity sc on sc.id=sr.cid
+    </select>
+    <!--查询数量-->
+    <select id="selectCount" resultType="int">
+        select count(*) from stylist
+    </select>
+    <!--根据城市查询设计师-->
+    <select id="selectByCity" resultMap="BaseResultMap2" parameterType="java.lang.String">
+        select sl.id id, sc.id cid,sr.id rid, sl.`name`,sc.`name` city,sr.`name` region, phone from stylist sl
+        inner join styregion sr on sr.id = sl.aid
+        inner join stycity sc on sc.id=sr.cid
+        where sc.`name`=#{sc.name}
+    </select>
+    <!--根据城市ID查询设计师-->
+    <select id="selectBycid" resultMap="BaseResultMap2" parameterType="int">
+        select sl.id id, sc.id cid,sr.id rid, sl.`name`,sc.`name` city,sr.`name` region, phone from stylist sl
+        inner join styregion sr on sr.id = sl.aid
+        inner join stycity sc on sc.id=sr.cid
+        where sc.id=#{sc.id}
+    </select>
+    <!--根据ID查询地址-->
+    <select id="selectAddr" resultMap="BaseResultMap2" parameterType="int">
+        select sl.id id, sc.`name` city,sr.`name` region from stylist sl
+        inner join styregion sr on sr.id = sl.aid
+        inner join stycity sc on sc.id=sr.cid
+        where sl.id=#{sl.id}
+    </select>
+
 </mapper>
