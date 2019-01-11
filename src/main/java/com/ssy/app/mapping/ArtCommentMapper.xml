@@ -101,4 +101,10 @@
       `like` = #{like,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="selectCountByUid" parameterType="java.lang.Long" resultMap="java.lang.Long">
+    select
+    count(*)
+    from article_comment
+    where uid=#{uid}
+  </select>
 </mapper>

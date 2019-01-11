@@ -42,16 +42,16 @@
 	<bean
 		class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor" />
 
-	<!--<mvc:interceptors>-->
-		<!--<mvc:interceptor>-->
-			<!--<mvc:mapping path="/**"/>-->
-			<!--<mvc:exclude-mapping path="/user/*"></mvc:exclude-mapping>-->
-			<!--<mvc:exclude-mapping path="/user/register"></mvc:exclude-mapping>-->
-			<!--<mvc:exclude-mapping path="/v2/api-docs"></mvc:exclude-mapping>-->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/user/*"></mvc:exclude-mapping>
+			<mvc:exclude-mapping path="/user/register"></mvc:exclude-mapping>
+			<mvc:exclude-mapping path="/v2/api-docs"></mvc:exclude-mapping>
 
-			<!--<bean class="com.ssy.app.interceptor.TokenInterceptor"></bean>-->
-		<!--</mvc:interceptor>-->
-	<!--</mvc:interceptors>-->
+			<bean class="com.ssy.app.interceptor.TokenInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 	<mvc:default-servlet-handler />
 
 

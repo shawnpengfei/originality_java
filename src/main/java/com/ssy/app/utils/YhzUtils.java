@@ -5,6 +5,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -76,11 +77,46 @@ public class YhzUtils {
 
 
     public static void main(String[] args) {
-        String vv = YhzUtils.setValidator();
-        System.out.println(vv);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date=format.parse("2019-1-11");
+            String st = YhzUtils.getTime(date);
+            System.out.println(st);
+        }catch (Exception e){
 
-        vo.set(vv);
+        }
 
-        System.out.println(vo.get());
     }
+
+    public static long getDateTimeMillis(Date date){
+        long l = 0;
+        try{
+            l = date.getTime();
+        }catch (Exception e){
+            System.out.println("时间错误");
+        }
+        return l;
+    }
+
+    public static String getTime(Date date){
+        long current = System.currentTimeMillis();
+        long dateTime = YhzUtils.getDateTimeMillis(date);
+        long diff = current - dateTime;
+        long min=diff/(1000*60);
+        if (min<60){
+            return min+"分钟";
+        } else {
+            long hour = min/60;
+            min = min%60;
+            if (hour<24){
+                 return hour+"小时"+min+"分钟";
+             }else {
+                long m = hour/24;
+                hour = hour%24;
+                return m+"天"+hour+"小时"+min+"分钟";
+            }
+        }
+    }
+
+
 }

@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class GoodsInArticleVo {
 
     @ApiModelProperty(name = "id",value = "商品id")
-    private int id;
+    private long id;
     @ApiModelProperty(name = "goodsName",value = "商品名")
     private String goodsName;
     @ApiModelProperty(name = "imgurl",value = "图片url")
@@ -15,11 +15,11 @@ public class GoodsInArticleVo {
     @ApiModelProperty(name = "price",value = "商品价格")
     private double price;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
