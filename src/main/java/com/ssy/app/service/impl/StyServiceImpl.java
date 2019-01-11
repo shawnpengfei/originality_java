@@ -1,8 +1,10 @@
 package com.ssy.app.service.impl;
 
+import com.ssy.app.dao.StycityMapper;
 import com.ssy.app.dao.StylistMapper;
 import com.ssy.app.enity.Stylist;
 import com.ssy.app.service.StyService;
+import com.ssy.app.vo.AreaVo;
 import com.ssy.app.vo.PageBeanVo;
 import com.ssy.app.vo.ResultVo;
 import com.ssy.app.vo.StyVo;
@@ -18,6 +20,10 @@ public class StyServiceImpl implements StyService {
 
     @Autowired
     private StylistMapper stylistDao;
+
+    @Autowired
+    private StycityMapper stycityDao;
+
     @Override
     public PageBeanVo<StyVo> queryPage(int page, int limit) {
         Map<String, Object> map = new HashedMap();
@@ -76,6 +82,17 @@ public class StyServiceImpl implements StyService {
         if (styVo!=null){
             return ResultVo.setOK(styVo);
         }else {
+            return ResultVo.setERROR();
+        }
+    }
+
+    //查询地区列表
+    @Override
+    public ResultVo selectAll() {
+        List<AreaVo> areaVo = stycityDao.selectAll();
+        if (areaVo!=null){
+            return ResultVo.setOK(areaVo);
+        }else{
             return ResultVo.setERROR();
         }
     }

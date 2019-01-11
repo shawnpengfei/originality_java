@@ -5,6 +5,13 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
+    <resultMap id="BaseResultMap2" type="com.ssy.app.vo.AreaVo">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <collection property="regionList" javaType="java.util.ArrayList" resultMap="com.ssy.app.dao.StyregionMapper.BaseResultMap2">
+
+        </collection>
+    </resultMap>
   <sql id="Base_Column_List">
     id, name
   </sql>
@@ -55,4 +62,8 @@
     set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <!--查询地区列表-->
+    <select id="selectAll" resultMap="BaseResultMap2">
+        select sc.id id, sc.`name` name,sr.id rid,sr.`name` rname from styregion sr inner join stycity sc where sc.id=sr.cid
+    </select>
 </mapper>
