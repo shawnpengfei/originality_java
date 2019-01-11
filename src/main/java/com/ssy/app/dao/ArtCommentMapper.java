@@ -14,4 +14,6 @@ public interface ArtCommentMapper {
     int updateByPrimaryKeySelective(ArtComment record);
 
     int updateByPrimaryKey(ArtComment record);
+
+    long selectCountByUid(long uid);
 }
