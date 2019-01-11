@@ -16,6 +16,20 @@
     from goods_type
     where id = #{id,jdbcType=BIGINT}
   </select>
+
+
+
+
+  <select id="showFatherGoodsType" resultType="com.ssy.app.enity.GoodsType">
+    select
+    g.id , g.typ
+    from goods_type g
+    where level = 1
+  </select>
+
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from goods_type
     where id = #{id,jdbcType=BIGINT}
