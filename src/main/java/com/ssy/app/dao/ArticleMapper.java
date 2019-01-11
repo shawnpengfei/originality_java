@@ -17,5 +17,5 @@ public interface ArticleMapper {
 
     int updateByPrimaryKey(Article record);
 
-    List<Article> selectAll();
+    List<Article> selectAll(Integer classifyId);
 }

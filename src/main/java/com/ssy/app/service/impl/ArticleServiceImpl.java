@@ -36,11 +36,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public ArticlePageVo getArticleByPage(int pageNum, int pageSize) {
+    public ArticlePageVo getArticleByPage(int pageNum, int pageSize,Integer classifyId) {
         ArticlePageVo articlePageVo = new ArticlePageVo();
 
         Page<Article> page = PageHelper.startPage(pageNum, pageSize);
-        List<Article> list = articleMapper.selectAll();
+        List<Article> list = articleMapper.selectAll(classifyId);
 
         articlePageVo.setTotals(page.getTotal());
         articlePageVo.setList(new ArrayList<>());
@@ -60,7 +60,7 @@ public class ArticleServiceImpl implements ArticleService {
             GoodsInArticleVo goodsInArticleVo = new GoodsInArticleVo();
             goodsInArticleVo.setId(goods.getId());
             goodsInArticleVo.setGoodsName(goods.getName());
-            goodsInArticleVo.setImgurl("http://47.107.64.250:8080/imgsss/1.jpg");
+            goodsInArticleVo.setImgurl(goods.getGimg());
             goodsInArticleVo.setPrice(goods.getPrice());
             articleVo.setGoodsInArticleVo(goodsInArticleVo);
             articlePageVo.getList().add(articleVo);

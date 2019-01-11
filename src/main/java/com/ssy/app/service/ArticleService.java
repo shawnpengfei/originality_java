@@ -8,5 +8,5 @@ import java.util.List;
 public interface ArticleService {
     List<ArticleClassify> findAllClassfiy();
 
-    ArticlePageVo getArticleByPage(int pageNum,int pageSize);
+    ArticlePageVo getArticleByPage(int pageNum,int pageSize,Integer classifyId);
 }

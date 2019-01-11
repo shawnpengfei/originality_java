@@ -149,9 +149,13 @@
       classify_id = #{classifyId,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectAll"  resultMap="BaseResultMap">
+  <select id="selectAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from article
+    where 1=1
+    <if test="_parameter != 0">
+      and classify_id = #{classifyId,jdbcType=INTEGER}
+    </if>
   </select>
 </mapper>
