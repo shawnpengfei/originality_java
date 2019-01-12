@@ -54,16 +54,18 @@ public class ArticleServiceImpl implements ArticleService {
             articleVo.setImgurl(article.getImgurl());
             articleVo.setLikes(article.getLikeNum());
             articleVo.setStarts(article.getStarsNum());
+            articleVo.setIntroduction(article.getIntroduction());
             long count = artCommentMapper.selectCountByUid(uid);
             articleVo.setComments(count);
             Goods goods = goodsMapper.selectByPrimaryKey(article.getGoodsId());
             GoodsInArticleVo goodsInArticleVo = new GoodsInArticleVo();
             goodsInArticleVo.setId(goods.getId());
             goodsInArticleVo.setGoodsName(goods.getName());
-            goodsInArticleVo.setImgurl(goods.getGimg());
+            goodsInArticleVo.setImgurl(goods.getImg());
             goodsInArticleVo.setPrice(goods.getPrice());
             articleVo.setGoodsInArticleVo(goodsInArticleVo);
             articlePageVo.getList().add(articleVo);
+
         }
         return articlePageVo;
     }
