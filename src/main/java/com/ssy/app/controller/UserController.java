@@ -11,6 +11,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,7 @@ public class UserController {
     private UserInfoService userInfoService;
     //用户注册
     @GetMapping("/register")
+    @CrossOrigin
     @ApiOperation(notes = "注册接口",value = "注册接口")
     public ResponseJson register(@ApiParam(name="loginName",value="用户名",required=true) String loginName,
                                  @ApiParam(name="password",value="密码",required=true)String password,
@@ -55,6 +57,7 @@ public class UserController {
     }
 
     @GetMapping("/validator")
+    @CrossOrigin
     @ApiOperation(notes = "获取手机验证码",value = "获取验证码")
     public String validatorCode(){
         String validate = YhzUtils.setValidator();
@@ -62,6 +65,7 @@ public class UserController {
         return validate;
     }
     @GetMapping("/login")
+    @CrossOrigin
     @ApiOperation(notes = "登录接口，成功后返回用户的登陆令牌和用户id,所有的接口请求头中都要有登陆令牌来验证登陆用户",
             value = "登陆接口，成功后返回用户的登陆令牌和用户id")
     public ResponseJson login(String loginName,String password){

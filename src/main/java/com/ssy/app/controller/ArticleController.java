@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ public class ArticleController {
     private ArticleService articleService;
 
     @GetMapping("/classify")
+    @CrossOrigin
     @ApiOperation(notes = "获取所有分类",value = "获取所有分类")
     public ArticleClassifyVo getAllClassify(){
         ArticleClassifyVo articleClassifyVo  = new ArticleClassifyVo();
@@ -27,6 +29,7 @@ public class ArticleController {
     }
 
     @GetMapping("/articleList")
+    @CrossOrigin
     @ApiOperation(value = "根据种草分类分页获取种草简介",notes = "根据中操分类获取种草页面的简介列表")
     public ArticlePageVo getArticleByClassify(
             @ApiParam(name = "pageNum",value = "分页页码") int pageNum,
