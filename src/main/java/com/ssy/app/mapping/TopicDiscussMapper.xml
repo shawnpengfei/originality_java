@@ -7,6 +7,19 @@
     <result column="descr" jdbcType="VARCHAR" property="descr" />
     <result column="uid" jdbcType="BIGINT" property="uid" />
   </resultMap>
+    <resultMap id="BaseResultMap2" type="com.ssy.app.vo.TopicVo">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="creattime" jdbcType="TIMESTAMP" property="creattime" />
+        <result column="uid" jdbcType="BIGINT" property="uid" />
+        <result column="nid" jdbcType="BIGINT" property="nid" />
+        <result column="nname" jdbcType="VARCHAR" property="nname" />
+        <result column="img" jdbcType="VARCHAR" property="img" />
+        <result column="imgurl" jdbcType="VARCHAR" property="imgurl" />
+        <result column="cid" jdbcType="BIGINT" property="cid" />
+        <result column="cname" jdbcType="VARCHAR" property="cname" />
+        <result column="info" jdbcType="VARCHAR" property="info" />
+    </resultMap>
   <sql id="Base_Column_List">
     id, tid, descr, uid
   </sql>
@@ -79,4 +92,13 @@
       uid = #{uid,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+    <!--根据ID查询话题-->
+    <select id="selectById" resultMap="BaseResultMap2" parameterType="int">
+        select t.title title, u.id uid,ui.id nid,ui.nickname nname,
+        t.imgurl imgurl,tc.id cid,tc.classify cname,t.info info
+        from topic t inner join userinfo ui on t.uid = ui.id
+                     inner join `user` u on ui.uid=u.id
+                     inner join topic_classify tc on t.cid=tc.id
+        where t.id=#{t.id}
+    </select>
 </mapper>

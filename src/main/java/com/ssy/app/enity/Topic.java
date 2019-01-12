@@ -15,6 +15,8 @@ public class Topic {
 
     private Long cid;
 
+    private String info;
+
     public Integer getId() {
         return id;
     }
@@ -61,5 +63,13 @@ public class Topic {
 
     public void setCid(Long cid) {
         this.cid = cid;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info == null ? null : info.trim();
     }
 }
