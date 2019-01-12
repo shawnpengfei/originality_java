@@ -66,4 +66,12 @@ public class StyController {
     public ResultVo stylistadd(Stylist stylist){
         return styService.addSty(stylist);
     }
+
+    //查询地区列表
+    @GetMapping("styareaall")
+    @CrossOrigin
+    @ApiOperation(notes = "查询地区列表",value = "styareaall")
+    public ResultVo styareaall(){
+        return styService.selectAll();
+    }
 }

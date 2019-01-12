@@ -6,6 +6,11 @@
     <result column="cid" jdbcType="INTEGER" property="cid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
+    <resultMap id="BaseResultMap2" type="com.ssy.app.vo.RegionVo">
+        <id property="rid" column="rid"/>
+        <id property="cid" column="cid"/>
+        <result property="rname" column="rname"/>
+    </resultMap>
   <sql id="Base_Column_List">
     id, cid, name
   </sql>

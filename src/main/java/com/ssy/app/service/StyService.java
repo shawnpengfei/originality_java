@@ -25,4 +25,7 @@ public interface StyService {
     //根据ID查询地址
     ResultVo selectAddr(int id);
 
+    //查询地区列表
+    ResultVo selectAll();
+
 }
