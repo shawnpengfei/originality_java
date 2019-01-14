@@ -18,4 +18,6 @@ public interface ArticleMapper {
     int updateByPrimaryKey(Article record);
 
     List<Article> selectAll(Integer classifyId);
+
+    int updateLike(Long id);
 }

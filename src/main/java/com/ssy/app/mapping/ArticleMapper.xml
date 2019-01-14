@@ -158,4 +158,8 @@
       and classify_id = #{classifyId,jdbcType=INTEGER}
     </if>
   </select>
+
+  <update id="updateLike" parameterType="java.lang.Long">
+        update article set like_num=like_num+1 where id = #{id}
+  </update>
 </mapper>

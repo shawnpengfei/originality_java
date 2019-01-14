@@ -3,17 +3,18 @@ package com.ssy.app.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.ssy.app.dao.*;
-import com.ssy.app.enity.Article;
-import com.ssy.app.enity.ArticleClassify;
-import com.ssy.app.enity.Goods;
-import com.ssy.app.enity.UserInfo;
+import com.ssy.app.enity.*;
 import com.ssy.app.service.ArticleService;
 import com.ssy.app.utils.YhzUtils;
+import com.ssy.app.vo.ArticleDes;
 import com.ssy.app.vo.ArticlePageVo;
 import com.ssy.app.vo.ArticleVo;
 import com.ssy.app.vo.GoodsInArticleVo;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,8 @@ public class ArticleServiceImpl implements ArticleService {
     private ArtCommentMapper artCommentMapper;
     @Autowired
     private GoodsMapper goodsMapper;
-
+    @Autowired
+    private AtColMapper atColMapper;
     @Override
     public List<ArticleClassify> findAllClassfiy() {
         return articleClassifyMapper.selectAll();
@@ -65,8 +67,28 @@ public class ArticleServiceImpl implements ArticleService {
             goodsInArticleVo.setPrice(goods.getPrice());
             articleVo.setGoodsInArticleVo(goodsInArticleVo);
             articlePageVo.getList().add(articleVo);
-
         }
         return articlePageVo;
     }
+
+    @Override
+    public boolean articleLike(Long id) {
+        return articleMapper.updateLike(id)>0;
+    }
+
+    @Override
+    public boolean articleCollection(long uid, long atId) {
+        AtCol atCol = new AtCol();
+        atCol.setAtId(atId);
+        atCol.setUid(uid);
+        return atColMapper.insertSelective(atCol)>0;
+    }
+
+    @Override
+    public ArticleDes getArticle(Long id) {
+
+        return null;
+    }
+
+
 }
