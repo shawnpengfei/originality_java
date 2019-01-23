@@ -1,7 +1,5 @@
-package com.ssy.app.interceptor;
+package com.music.interceptor;
 
-import com.ssy.app.utils.YhzUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,10 +18,10 @@ public class TokenInterceptor implements HandlerInterceptor {
         httpServletResponse.addHeader("Access-Control-Allow-Headers", "Authentication,Origin, X-Requested-With, Content-Type, Accept,token");
 
         String token = httpServletRequest.getHeader("token");
-        if(token != null){
+        if (token != null) {
             boolean rr = YhzUtils.verify(token);
             System.out.println(rr);
-            if (rr){
+            if (rr) {
                 return true;
             }
         }
