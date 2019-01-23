@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssy.app.dao.SubjectclassMapper">
+    <resultMap id="BaseResultMap" type="com.ssy.app.enity.Subjectclass">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="jid" jdbcType="INTEGER" property="jid"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="imgurl" jdbcType="VARCHAR" property="imgurl"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, jid, name, imgurl
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from subjectclass
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from subjectclass
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ssy.app.enity.Subjectclass">
+        insert into subjectclass (id, jid, name,
+        imgurl)
+        values (#{id,jdbcType=INTEGER}, #{jid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+        #{imgurl,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.ssy.app.enity.Subjectclass">
+        insert into subjectclass
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="jid != null">
+                jid,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="imgurl != null">
+                imgurl,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="jid != null">
+                #{jid,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="imgurl != null">
+                #{imgurl,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ssy.app.enity.Subjectclass">
+        update subjectclass
+        <set>
+            <if test="jid != null">
+                jid = #{jid,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="imgurl != null">
+                imgurl = #{imgurl,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ssy.app.enity.Subjectclass">
+        update subjectclass
+        set jid = #{jid,jdbcType=INTEGER},
+        name = #{name,jdbcType=VARCHAR},
+        imgurl = #{imgurl,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <!--查询所有-->
+    <select id="selectByPage" resultType="com.ssy.app.enity.Subjectclass" parameterType="int">
+        select id,name,jid,imgurl from subjectclass order by jid limit #{index},#{limit}
+    </select>
+    <!--查询数量-->
+    <select id="selectCount" resultType="int">
+        select count(*) from subjectclass
+    </select>
+
+</mapper>
